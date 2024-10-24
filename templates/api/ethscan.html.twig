@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ApiController!{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+
+    <h1> Adresse : {{address}} </h1>
+    <h2> Balance : {{ethBalance | number_format(6, ',', ' ') }} ETH </h2>
+    {% for balance in balances %}
+    <p> Balance : {{(balance.value / 10 ** balance.tokenDecimal)| number_format(6, ',', ' ') }} {{balance.tokenSymbol}} </p>
+    {% endfor %}
+
+
+
+</div>
+{% endblock %}
