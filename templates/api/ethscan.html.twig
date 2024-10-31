@@ -1,19 +1,32 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello ApiController!{% endblock %}
+{% block title %}ETH wallet{% endblock %}
 
 {% block body %}
 
-
 <div class="example-wrapper">
-
+    
     <h1> Adresse : {{address}} </h1>
     <h2> Balance : {{ethBalance | number_format(6, ',', ' ') }} ETH </h2>
+    <h3>Portefeuille ETH</h3>
+    <ul>
+    <li>
+        <p id="Token">Token</p>
+        <p id="UsdPrice">Prix en USD</p>
+        <p id="Montant">Montant</p> 
+        <p id="UsdValue">Valeur en USD</p>
+    </li> 
     {% for balance in balances %}
-    <p> Balance : {{(balance.value / 10 ** balance.tokenDecimal)| number_format(6, ',', ' ') }} {{balance.tokenSymbol}} </p>
+    <li>
+        
+        <p>
+            <img id="icone" src="{{balance.img}}" alt="{{balance.tokenSymbol}}">
+            {{  balance.tokenSymbol}}
+        </p>
+        <p>{{balance.priceUnit ?? null}} $</p>
+        <p>{{(balance.value / 10 ** balance.tokenDecimal)| number_format(6, ',', ' ') }}</p>
+        <p>{{balance.price ?? null}} $</p>
     {% endfor %}
-
-
+    </ul>
 
 </div>
 {% endblock %}

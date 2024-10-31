@@ -1,3 +1,35 @@
 body {
     background-color: skyblue;
 }
+ul {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 1em;
+}
+li p a {
+    width : 25%;
+    margin: 0;
+    padding: 0;
+}
+li:nth-child(1) {
+    font-weight: bold;
+    background-color: thistle;
+}
+li:nth-child(odd) {
+    background-color: rgb(111, 212, 212);
+}
+li:nth-child(even) {
+    background-color: skyblue;
+}
+#icone {
+    width: 20px;
+    height: 20px;
+}

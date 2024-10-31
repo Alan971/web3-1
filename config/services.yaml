@@ -6,6 +6,7 @@
 parameters:
     rpcUrl: '%env(ETHEREUM_RPC_URL)%'
     etherscanApiKey: '%env(ETHERSCAN_API_KEY)%'
+    CoinMarketCapApiKey: '%env(CMC_API_KEY)%'
 
 services:
     # default configuration for services in *this* file

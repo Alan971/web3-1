@@ -24,7 +24,6 @@ class EtherscanApiService
         if ($data['status'] !== '1') {
             throw new \Exception("Error fetching token balances: " . $data['message'] . ". Caused by :" . $data['result']);
         }
-        $tokenBalances = [];
         return $data;
 
     }
@@ -33,7 +32,6 @@ class EtherscanApiService
     {
         $data = $this->askEtherscanAnything($address, $etherscanApiKey, $module, $action);
         // mise en forme du résultat (dépréciation de l'information contenue dans $data)
-        dump($data);
         return $data['result'] / 1e18;
         
     }
@@ -54,7 +52,7 @@ class EtherscanApiService
         //on additionne ou soustrait chaque transaction de symbole identique
         $count = 0;
         foreach ($tokenBalances as $tokentx) {
-            if( $tokentx['tokenFrom'] === $address) {
+            if( $tokentx['tokenFrom'] === strtolower($address)) {
                 $tokentx['value'] = - $tokentx['value'];
             }
             for($i = 0; $i < $count; $i++) {
@@ -66,12 +64,10 @@ class EtherscanApiService
             }
             $count++;
         }
-        $count = 0;
         foreach ($tokenBalances as $tokentx) {
             if($tokentx['tokenSymbol'] !== "") {
                 $allTokenBalances[] = $tokentx;
             }
-            $count++;
         }
 
         return $allTokenBalances;
